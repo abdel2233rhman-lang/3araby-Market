@@ -1,0 +1,448 @@
+/* ===== العربي ماركت — Animations ===== */
+
+/* ---- Keyframes ---- */
+@keyframes logoSwing{
+  0%,100%{transform:rotate(-4deg)}
+  50%{transform:rotate(4deg)}
+}
+@keyframes cartBounce{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-4px)}
+}
+@keyframes loaderSwing{
+  0%,100%{transform:rotate(-10deg)}
+  50%{transform:rotate(10deg)}
+}
+@keyframes blink{
+  0%,100%{opacity:1}
+  50%{opacity:0}
+}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+@keyframes floatY{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-18px)}
+}
+@keyframes floatShape{
+  0%,100%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(30px,-20px) scale(1.05)}
+  66%{transform:translate(-20px,20px) scale(.95)}
+}
+@keyframes offerMove{
+  0%,100%{transform:translate(0,0)}
+  50%{transform:translate(20px,-10px)}
+}
+@keyframes wheel{
+  0%{transform:translateY(0);opacity:1}
+  100%{transform:translateY(14px);opacity:0}
+}
+@keyframes cartDrive{
+  0%,100%{transform:translateX(-30px)}
+  50%{transform:translateX(30px)}
+}
+@keyframes cartTrail{
+  0%,100%{width:0;opacity:0}
+  50%{width:60px;opacity:.6}
+}
+@keyframes badgePulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.1)}
+}
+@keyframes badgePop{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.6)}
+  100%{transform:scale(1)}
+}
+@keyframes heartBeat{
+  0%,100%{transform:scale(1)}
+  25%{transform:scale(1.3)}
+  50%{transform:scale(1)}
+  75%{transform:scale(1.2)}
+}
+@keyframes slideInRight{
+  from{opacity:0;transform:translateX(-30px)}
+  to{opacity:1;transform:translateX(0)}
+}
+@keyframes itemAdded{
+  0%{transform:scale(.8);background:rgba(34,197,94,.3)}
+  50%{transform:scale(1.02)}
+  100%{transform:scale(1);background:var(--surface)}
+}
+@keyframes particleFloat{
+  from{transform:translateY(100vh) rotate(0)}
+  to{transform:translateY(-10vh) rotate(360deg)}
+}
+@keyframes ripple{
+  to{transform:scale(4);opacity:0}
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes morph{
+  0%,100%{border-radius:50%}
+  50%{border-radius:30% 70% 70% 30% / 30% 30% 70% 70%}
+}
+
+/* ---- Reveal on scroll ---- */
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:opacity .8s ease,transform .8s cubic-bezier(.34,1.56,.64,1);
+}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal.delay-1{transition-delay:.1s}
+.reveal.delay-2{transition-delay:.2s}
+.reveal.delay-3{transition-delay:.3s}
+
+/* ---- Ripple effect ---- */
+.ripple{
+  position:absolute;border-radius:50%;
+  background:rgba(255,255,255,.5);
+  transform:scale(0);
+  animation:ripple .6s ease-out;
+  pointer-events:none;
+}
+
+/* ---- Magnetic hover glow ---- */
+.magnetic{transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+
+/* ---- Animated border ---- */
+.cat-card.animated-border{
+  position:relative;
+}
+.cat-card.animated-border::after{
+  content:'';position:absolute;inset:0;
+  border-radius:var(--radius);
+  padding:1.5px;
+  background:linear-gradient(135deg,var(--green),var(--gold),var(--green));
+  background-size:200% 200%;
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  opacity:0;transition:opacity .4s;
+  animation:borderFlow 3s linear infinite;
+}
+.cat-card.animated-border:hover::after{opacity:1}
+@keyframes borderFlow{
+  0%{background-position:0% 50%}
+  100%{background-position:200% 50%}
+}
+
+/* =========================================
+   CATEGORY SCENE ANIMATIONS
+   ========================================= */
+
+/* ---- Pasta: packets fall, bounce, slide into bag ---- */
+.scene-pasta .pasta-packet{
+  position:absolute;top:-40px;
+  font-size:1.8rem;
+  animation:pastaFall 1.6s ease-in forwards;
+}
+@keyframes pastaFall{
+  0%{top:-40px;opacity:0;transform:rotate(0)}
+  15%{opacity:1}
+  60%{top:120px;transform:rotate(180deg)}
+  72%{top:90px;transform:rotate(220deg)}
+  82%{top:120px;transform:rotate(280deg)}
+  100%{top:130px;left:50%;transform:translateX(-50%) rotate(360deg) scale(.4);opacity:0}
+}
+.scene-pasta .scene-bag{
+  position:absolute;bottom:10px;left:50%;
+  transform:translateX(-50%);
+  font-size:2.5rem;
+  transition:transform .3s;
+}
+.scene-pasta.bag-close .scene-bag{animation:bagClose .5s ease}
+@keyframes bagClose{
+  0%{transform:translateX(-50%) scale(1)}
+  50%{transform:translateX(-50%) scale(1.2) rotate(-10deg)}
+  100%{transform:translateX(-50%) scale(1)}
+}
+
+/* ---- Juice: bottles slide from sides, pour into glass, bubbles ---- */
+.scene-juice .juice-bottle{
+  position:absolute;top:20px;
+  font-size:1.8rem;
+  animation:juiceSlide 1.4s ease forwards;
+}
+.scene-juice .juice-bottle.left{left:-30px;animation-name:juiceSlideRight}
+.scene-juice .juice-bottle.right{right:-30px;animation-name:juiceSlideLeft}
+@keyframes juiceSlideRight{
+  0%{left:-30px;opacity:0}
+  30%{opacity:1}
+  70%{left:35%}
+  100%{left:45%;opacity:0;transform:rotate(45deg)}
+}
+@keyframes juiceSlideLeft{
+  0%{right:-30px;opacity:0}
+  30%{opacity:1}
+  70%{right:35%}
+  100%{right:45%;opacity:0;transform:rotate(-45deg)}
+}
+.scene-juice .scene-glass-cup{
+  position:absolute;bottom:10px;left:50%;
+  transform:translateX(-50%);
+  font-size:2.5rem;
+  animation:glassFill 1.4s ease forwards;
+}
+@keyframes glassFill{
+  0%{transform:translateX(-50%) scale(.9)}
+  70%{transform:translateX(-50%) scale(1)}
+  100%{transform:translateX(-50%) scale(1.1)}
+}
+.scene-juice .bubble{
+  position:absolute;bottom:30px;
+  width:8px;height:8px;border-radius:50%;
+  background:rgba(255,255,255,.6);
+  animation:bubbleUp 2s ease-in infinite;
+}
+@keyframes bubbleUp{
+  0%{bottom:30px;opacity:0;transform:scale(.5)}
+  20%{opacity:1}
+  100%{bottom:140px;opacity:0;transform:scale(1.2)}
+}
+.scene-juice .splash{
+  position:absolute;bottom:50px;left:50%;
+  width:30px;height:30px;border-radius:50%;
+  background:rgba(255,140,66,.5);
+  transform:translateX(-50%) scale(0);
+  animation:splash .6s ease .9s forwards;
+}
+@keyframes splash{
+  0%{transform:translateX(-50%) scale(0)}
+  50%{transform:translateX(-50%) scale(2.5);opacity:.8}
+  100%{transform:translateX(-50%) scale(3.5);opacity:0}
+}
+
+/* ---- Chips: packets fall, rotate, jump into basket ---- */
+.scene-chips .chips-packet{
+  position:absolute;top:-40px;
+  font-size:1.8rem;
+  animation:chipsFall 1.6s ease-in forwards;
+}
+@keyframes chipsFall{
+  0%{top:-40px;opacity:0;transform:rotate(0)}
+  20%{opacity:1}
+  60%{top:100px;transform:rotate(360deg)}
+  80%{top:70px;transform:rotate(540deg) translateX(20px)}
+  100%{top:120px;left:50%;transform:translateX(-50%) rotate(720deg) scale(.4);opacity:0}
+}
+.scene-chips .scene-basket{
+  position:absolute;bottom:10px;left:50%;
+  transform:translateX(-50%);
+  font-size:2.5rem;
+  animation:basketShake 1.6s ease;
+}
+@keyframes basketShake{
+  0%,60%{transform:translateX(-50%) rotate(0)}
+  70%{transform:translateX(-50%) rotate(-8deg)}
+  80%{transform:translateX(-50%) rotate(8deg)}
+  90%{transform:translateX(-50%) rotate(-4deg)}
+  100%{transform:translateX(-50%) rotate(0)}
+}
+
+/* ---- Oil: bottles rotate, golden wave, shine ---- */
+.scene-oil .scene-oil-bottle{
+  position:absolute;top:30px;left:50%;
+  transform:translateX(-50%);
+  font-size:2.5rem;
+  animation:oilRotate 4s ease-in-out infinite;
+}
+@keyframes oilRotate{
+  0%,100%{transform:translateX(-50%) rotate(-8deg)}
+  50%{transform:translateX(-50%) rotate(8deg)}
+}
+.scene-oil .scene-oil-wave{
+  position:absolute;bottom:0;left:0;right:0;
+  height:40px;
+  background:linear-gradient(180deg,transparent,rgba(245,196,81,.4),rgba(245,196,81,.6));
+  border-radius:50% 50% 0 0;
+  animation:oilWave 3s ease-in-out infinite;
+}
+@keyframes oilWave{
+  0%,100%{transform:scaleX(1) translateY(0)}
+  50%{transform:scaleX(1.1) translateY(-6px)}
+}
+.scene-oil .oil-shine{
+  position:absolute;top:20px;left:50%;
+  width:60px;height:60px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.6),transparent 70%);
+  transform:translateX(-50%) scale(0);
+  animation:oilShine 3s ease-in-out infinite;
+}
+@keyframes oilShine{
+  0%,100%{transform:translateX(-50%) scale(0);opacity:0}
+  50%{transform:translateX(-50%) scale(1.5);opacity:.8}
+}
+
+/* ---- Sugar: grains fall like snow, gather in bag, sparkle ---- */
+.scene-sugar .sugar-grain{
+  position:absolute;top:-10px;
+  width:6px;height:6px;border-radius:50%;
+  background:#fff;opacity:.8;
+  animation:sugarFall 2.5s linear forwards;
+}
+@keyframes sugarFall{
+  0%{top:-10px;opacity:0}
+  10%{opacity:1}
+  90%{opacity:1}
+  100%{top:120px;left:50%;transform:translateX(-50%) scale(0);opacity:0}
+}
+.scene-sugar .scene-sugar-bag{
+  position:absolute;bottom:10px;left:50%;
+  transform:translateX(-50%);
+  font-size:2.5rem;
+}
+.scene-sugar .sparkle{
+  position:absolute;width:6px;height:6px;
+  background:var(--gold);border-radius:50%;
+  box-shadow:0 0 8px var(--gold);
+  animation:sparkle 1.5s ease infinite;
+}
+@keyframes sparkle{
+  0%,100%{opacity:0;transform:scale(0)}
+  50%{opacity:1;transform:scale(1.5)}
+}
+
+/* ---- Biscuit: cookies rotate, chocolate particles, jump into basket ---- */
+.scene-biscuit .cookie{
+  position:absolute;top:20px;
+  font-size:1.6rem;
+  animation:cookieJump 1.8s ease forwards;
+}
+@keyframes cookieJump{
+  0%{top:20px;opacity:0;transform:rotate(0)}
+  20%{opacity:1}
+  50%{top:60px;transform:rotate(180deg)}
+  100%{top:120px;left:50%;transform:translateX(-50%) rotate(360deg) scale(.4);opacity:0}
+}
+.scene-biscuit .scene-cookie-basket{
+  position:absolute;bottom:10px;left:50%;
+  transform:translateX(-50%);
+  font-size:2.5rem;
+}
+.scene-biscuit .choco-bit{
+  position:absolute;top:30px;
+  width:6px;height:6px;border-radius:50%;
+  background:#8B4513;
+  animation:chocoFloat 3s ease-in-out infinite;
+}
+@keyframes chocoFloat{
+  0%,100%{transform:translateY(0) rotate(0)}
+  50%{transform:translateY(-20px) rotate(180deg)}
+}
+
+/* ---- Canned: cans rotate, stack ---- */
+.scene-canned .can{
+  position:absolute;left:50%;
+  font-size:1.6rem;
+  transform:translateX(-50%);
+  animation:canStack 1.4s ease forwards;
+}
+@keyframes canStack{
+  0%{top:-30px;opacity:0;transform:translateX(-50%) rotate(0)}
+  30%{opacity:1}
+  100%{transform:translateX(-50%) rotate(360deg)}
+}
+.scene-canned .scene-can-stack{
+  position:absolute;bottom:10px;left:50%;
+  transform:translateX(-50%);
+  display:flex;flex-direction:column-reverse;gap:2px;
+  align-items:center;
+}
+
+/* ---- Dairy: milk drops, bottle fills ---- */
+.scene-dairy .scene-milk-bottle{
+  position:absolute;bottom:10px;left:50%;
+  transform:translateX(-50%);
+  font-size:2.5rem;
+  animation:milkFill 2s ease forwards;
+}
+@keyframes milkFill{
+  0%{transform:translateX(-50%) scale(.8)}
+  100%{transform:translateX(-50%) scale(1.1)}
+}
+.scene-dairy .milk-drop{
+  position:absolute;top:20px;left:50%;
+  width:8px;height:14px;border-radius:0 0 50% 50%;
+  background:rgba(255,255,255,.9);
+  transform:translateX(-50%);
+  animation:milkDrop 1.5s ease-in infinite;
+}
+@keyframes milkDrop{
+  0%{top:20px;opacity:0;transform:translateX(-50%) scale(1)}
+  20%{opacity:1}
+  100%{top:110px;opacity:0;transform:translateX(-50%) scale(.3)}
+}
+
+/* ---- Cheese: slices slide, glow ---- */
+.scene-cheese .scene-cheese{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-size:2.5rem;
+  animation:cheeseGlow 2.5s ease-in-out infinite;
+}
+@keyframes cheeseGlow{
+  0%,100%{transform:translate(-50%,-50%) scale(1);filter:drop-shadow(0 0 0 transparent)}
+  50%{transform:translate(-50%,-50%) scale(1.15);filter:drop-shadow(0 0 16px var(--gold))}
+}
+.scene-cheese .cheese-slice{
+  position:absolute;top:30px;
+  font-size:1.4rem;
+  animation:cheeseSlide 1.6s ease forwards;
+}
+@keyframes cheeseSlide{
+  0%{opacity:0;transform:translateX(40px)}
+  30%{opacity:1}
+  100%{left:50%;transform:translateX(-50%) scale(.5);opacity:0}
+}
+
+/* ---- Sweets: chocolate melts, candy floats ---- */
+.scene-sweets .scene-chocolate{
+  position:absolute;top:30px;left:50%;
+  transform:translateX(-50%);
+  font-size:2.5rem;
+  animation:chocoMelt 3s ease-in-out infinite;
+}
+@keyframes chocoMelt{
+  0%,100%{transform:translateX(-50%) scale(1) rotate(0)}
+  50%{transform:translateX(-50%) scale(1.1) rotate(5deg);filter:drop-shadow(0 4px 8px rgba(139,69,19,.6))}
+}
+.scene-sweets .candy{
+  position:absolute;font-size:1.4rem;
+  animation:candyFloat 3s ease-in-out infinite;
+}
+@keyframes candyFloat{
+  0%,100%{transform:translateY(0) rotate(0)}
+  50%{transform:translateY(-16px) rotate(20deg)}
+}
+.scene-sweets .melt-drop{
+  position:absolute;bottom:30px;left:50%;
+  width:10px;height:10px;border-radius:50%;
+  background:#8B4513;
+  transform:translateX(-50%);
+  animation:meltDrip 2s ease-in infinite;
+}
+@keyframes meltDrip{
+  0%{bottom:60px;opacity:0;transform:translateX(-50%) scale(.5)}
+  30%{opacity:1}
+  100%{bottom:10px;opacity:0;transform:translateX(-50%) scale(1.2)}
+}
+
+/* ---- Glass hover ---- */
+.glass-hover{transition:background .4s,backdrop-filter .4s}
+.glass-hover:hover{background:var(--surface-2);backdrop-filter:blur(24px)}
+
+/* ---- Image hover zoom ---- */
+.zoom-hover{overflow:hidden}
+.zoom-hover img,.zoom-hover .product-emoji{transition:transform .5s cubic-bezier(.34,1.56,.64,1)}
+.zoom-hover:hover img,.zoom-hover:hover .product-emoji{transform:scale(1.15)}
+
+/* ---- Typing cursor ---- */
+.cursor-blink{font-weight:300}
+
+/* ---- Floating icons ---- */
+.float-icon{animation:floatY 4s ease-in-out infinite}

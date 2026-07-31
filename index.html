@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/assets/logo.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="العربي ماركت - سوق عربي عصري للتسوق عبر الإنترنت. مكرونات، عصائر، شيبسي، زيت، سكر، بسكويت، معلبات، ألبان، جبن، حلويات. اطلب عبر واتساب." />
+  <meta name="keywords" content="سوق عربي, العربي ماركت, تسوق, مكرونة, عصير, شيبسي, زيت, سكر, بسكويت, معلبات, ألبان, جبن, حلويات, واتساب" />
+  <meta name="author" content="العربي ماركت" />
+  <meta property="og:title" content="العربي ماركت" />
+  <meta property="og:description" content="سوق عربي عصري للتسوق عبر الإنترنت" />
+  <meta property="og:type" content="website" />
+  <title>العربي ماركت - سوقك العربي العصري</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/animations.css" />
+  <link rel="stylesheet" href="/css/responsive.css" />
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Loading Screen -->
+  <div class="loader" id="loader">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <span class="loader-cart">🛒</span>
+        <span class="loader-text">العربي ماركت</span>
+      </div>
+      <div class="loader-bar"><span class="loader-progress"></span></div>
+      <div class="loader-percent" id="loaderPercent">0%</div>
+    </div>
+  </div>
+
+  <!-- Scroll Progress -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container glass">
+      <a href="#home" class="nav-logo" aria-label="العربي ماركت">
+        <span class="logo-cart">🛒</span>
+        <span class="logo-text">العربي ماركت</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="nav-link active">الرئيسية</a></li>
+        <li><a href="#products" class="nav-link">المنتجات</a></li>
+        <li><a href="#offers" class="nav-link">العروض</a></li>
+        <li><a href="#contact" class="nav-link">تواصل معنا</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="icon-btn fav-btn" id="favBtn" aria-label="المفضلة">
+          <span>❤</span>
+          <span class="badge" id="favCount">0</span>
+        </button>
+        <button class="icon-btn cart-btn" id="cartBtn" aria-label="السلة">
+          <span>🛒</span>
+          <span class="badge" id="cartCount">0</span>
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="القائمة">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero" id="home">
+    <div class="hero-bg">
+      <div class="hero-shape shape1"></div>
+      <div class="hero-shape shape2"></div>
+      <div class="hero-shape shape3"></div>
+    </div>
+    <div class="hero-floats" id="heroFloats"></div>
+    <div class="hero-content">
+      <div class="hero-badge glass">🚚 توصيل سريع لكل المناطق</div>
+      <h1 class="hero-title">
+        <span class="typing" id="typingText"></span><span class="cursor-blink">|</span>
+      </h1>
+      <p class="hero-sub">تسوّق كل ما تحتاجه لبيتك من مكان واحد — جودة عالية، أسعار مميزة، وتوصيل لباب بيتك.</p>
+      <div class="hero-buttons">
+        <a href="#products" class="btn btn-primary magnetic" id="startShop">
+          <span>ابدأ التسوق</span>
+          <span class="btn-glow"></span>
+        </a>
+        <a href="#offers" class="btn btn-outline magnetic">
+          <span>العروض</span>
+        </a>
+      </div>
+      <div class="hero-cart-anim" id="heroCart">
+        <div class="hero-cart-icon">🛒</div>
+        <div class="hero-cart-trail"></div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num" data-count="500">0</span><span class="stat-label">منتج</span></div>
+        <div class="stat"><span class="stat-num" data-count="1000">0</span><span class="stat-label">عميل سعيد</span></div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span class="mouse"><span class="wheel"></span></span>
+      <span>مرر للأسفل</span>
+    </div>
+  </header>
+
+  <!-- Products -->
+  <section class="section products" id="products">
+    <div class="section-head reveal">
+      <span class="section-tag">منتجاتنا</span>
+      <h2 class="section-title">تشكيلة مميزة</h2>
+      <p class="section-desc">اختر من بين أفضل المنتجات بأفضل الأسعار</p>
+    </div>
+
+    <div class="cat-filters" id="catFilters">
+      <button class="filter-btn active" data-filter="all">الكل</button>
+      <button class="filter-btn" data-filter="pasta">مكرونات</button>
+      <button class="filter-btn" data-filter="juice">عصائر</button>
+      <button class="filter-btn" data-filter="chips">شيبسي</button>
+      <button class="filter-btn" data-filter="oil">زيت</button>
+      <button class="filter-btn" data-filter="sugar">سكر</button>
+      <button class="filter-btn" data-filter="biscuit">بسكويت</button>
+      <button class="filter-btn" data-filter="canned">معلبات</button>
+      <button class="filter-btn" data-filter="dairy">ألبان</button>
+      <button class="filter-btn" data-filter="cheese">جبن</button>
+      <button class="filter-btn" data-filter="sweets">حلويات</button>
+    </div>
+
+    <div class="products-grid" id="productsGrid"></div>
+  </section>
+
+  <!-- Offers -->
+  <section class="section offers" id="offers">
+    <div class="section-head reveal">
+      <span class="section-tag">عروض</span>
+      <h2 class="section-title">عروض الأسبوع</h2>
+      <p class="section-desc">خصومات حصرية لفترة محدودة</p>
+    </div>
+    <div class="offers-track" id="offersTrack"></div>
+  </section>
+
+  <!-- Contact / Footer -->
+  <footer class="footer" id="contact">
+    <div class="footer-top">
+      <div class="footer-col reveal">
+        <div class="footer-logo">
+          <span class="logo-cart">🛒</span>
+          <span class="logo-text">العربي ماركت</span>
+        </div>
+        <p class="footer-about">سوقك العربي العصري — نوفر لك كل احتياجاتك اليومية بجودة عالية وأسعار منافسة وتوصيل سريع.</p>
+        <div class="footer-socials">
+          <a href="#" class="social" aria-label="فيسبوك">f</a>
+          <a href="#" class="social" aria-label="انستغرام">📷</a>
+          <a href="#" class="social" aria-label="واتساب">💬</a>
+        </div>
+      </div>
+      <div class="footer-col reveal">
+        <h4>روابط سريعة</h4>
+        <ul class="footer-links">
+          <li><a href="#home">الرئيسية</a></li>
+          <li><a href="#products">المنتجات</a></li>
+          <li><a href="#offers">العروض</a></li>
+        </ul>
+      </div>
+      <div class="footer-col reveal">
+        <h4>تواصل معنا</h4>
+        <ul class="footer-contact">
+          <li>📍 العنوان: شارع الرئيسي، المدينة</li>
+          <li>📞 الهاتف: <a href="tel:+201000000000">0100000000</a></li>
+          <li>💬 واتساب: <a href="#" id="footerWhats">راسلنا</a></li>
+        </ul>
+        <div class="footer-map">
+          <iframe
+            src="https://www.google.com/maps?q=Cairo,Egypt&output=embed"
+            width="100%" height="120" style="border:0;border-radius:12px" loading="lazy" title="موقعنا"></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 العربي ماركت — جميع الحقوق محفوظة.</p>
+      <p class="dev">صُمم بحب <span class="heart">❤</span> لسوق عربي عصري</p>
+    </div>
+  </footer>
+
+  <!-- Cart Drawer -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="سلة التسوق">
+    <div class="cart-head">
+      <h3>🛒 سلة التسوق</h3>
+      <button class="cart-close" id="cartClose" aria-label="إغلاق">✕</button>
+    </div>
+    <div class="cart-body" id="cartBody"></div>
+    <div class="cart-foot">
+      <div class="cart-total">
+        <span>الإجمالي</span>
+        <span id="cartTotal">0 ج.م</span>
+      </div>
+      <button class="btn btn-primary full" id="checkoutBtn">إتمام الطلب</button>
+    </div>
+  </aside>
+
+  <!-- Checkout Modal -->
+  <div class="modal-overlay" id="checkoutOverlay">
+    <div class="modal glass" id="checkoutModal">
+      <button class="modal-close" id="checkoutClose" aria-label="إغلاق">✕</button>
+      <h3 class="modal-title">إتمام الطلب</h3>
+      <form class="checkout-form" id="checkoutForm">
+        <div class="field">
+          <label for="cName">الاسم الكامل</label>
+          <input type="text" id="cName" required placeholder="اكتب اسمك" />
+        </div>
+        <div class="field">
+          <label for="cPhone">رقم الهاتف</label>
+          <input type="tel" id="cPhone" required placeholder="01xxxxxxxxx" />
+        </div>
+        <div class="field">
+          <label for="cAddress">العنوان</label>
+          <input type="text" id="cAddress" required placeholder="العنوان بالتفصيل" />
+        </div>
+        <div class="field">
+          <label for="cNotes">ملاحظات</label>
+          <textarea id="cNotes" rows="3" placeholder="أي ملاحظات إضافية"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary full">إتمام الطلب عبر واتساب</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Quick View Modal -->
+  <div class="modal-overlay" id="quickOverlay">
+    <div class="modal glass" id="quickModal">
+      <button class="modal-close" id="quickClose" aria-label="إغلاق">✕</button>
+      <div class="quick-content" id="quickContent"></div>
+    </div>
+  </div>
+
+  <!-- Back to top -->
+  <button class="back-top" id="backTop" aria-label="العودة للأعلى">↑</button>
+
+  <!-- Floating particles -->
+  <div class="particles" id="particles"></div>
+
+  <script type="module" src="/js/products.js"></script>
+  <script type="module" src="/js/cart.js"></script>
+  <script type="module" src="/js/animations.js"></script>
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>
