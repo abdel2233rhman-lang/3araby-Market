@@ -1,7 +1,7 @@
 /* ===== العربي ماركت — Cart & Checkout ===== */
 import { PRODUCTS, CAT_NAMES } from './products.js';
 
-const WHATSAPP_NUMBER = '201000000000'; // ضع رقمك هنا
+const WHATSAPP_NUMBER = '201031481430'; // ضع رقمك هنا
 
 let cart = [];
 let favorites = [];
@@ -239,17 +239,45 @@ export function initCartEvents(){
   });
 
   // checkout form
+  // document.getElementById('checkoutForm').addEventListener('submit', (e)=>{
+  //   e.preventDefault();
+  //   const name = document.getElementById('cName').value.trim();
+  //   const phone = document.getElementById('cPhone').value.trim();
+  //   const address = document.getElementById('cAddress').value.trim();
+  //   const notes = document.getElementById('cNotes').value.trim();
+  //   if(!name||!phone||!address){ showToast('يرجى ملء الحقول المطلوبة'); return; }
+  //   sendWhatsAppOrder(name, phone, address, notes);
+  //   closeCheckout();
+  //   showToast('تم إرسال طلبك عبر واتساب');
+  // });
   document.getElementById('checkoutForm').addEventListener('submit', (e)=>{
-    e.preventDefault();
-    const name = document.getElementById('cName').value.trim();
-    const phone = document.getElementById('cPhone').value.trim();
-    const address = document.getElementById('cAddress').value.trim();
-    const notes = document.getElementById('cNotes').value.trim();
-    if(!name||!phone||!address){ showToast('يرجى ملء الحقول المطلوبة'); return; }
-    sendWhatsAppOrder(name, phone, address, notes);
-    closeCheckout();
-    showToast('تم إرسال طلبك عبر واتساب');
-  });
+  e.preventDefault();
+
+  const name = document.getElementById('cName').value.trim();
+  const phone = document.getElementById('cPhone').value.trim();
+  const address = document.getElementById('cAddress').value.trim();
+  const notes = document.getElementById('cNotes').value.trim();
+
+  if(!name || !phone || !address){
+    showToast('يرجى ملء الحقول المطلوبة');
+    return;
+  }
+
+  // إرسال الطلب
+  sendWhatsAppOrder(name, phone, address, notes);
+
+  // تفريغ السلة
+  cart = [];
+  saveCart();
+  updateCartCount();
+  renderCart();
+
+  // غلق نافذة الطلب
+  closeCheckout();
+
+  // رسالة نجاح
+  showToast('تم إرسال طلبك وتم تفريغ السلة ✅');
+});
 
   // footer whatsapp
   const fw = document.getElementById('footerWhats');

@@ -81,12 +81,12 @@
   }
 
   /* Re-bind tilt after products re-render */
-  LUXE.initTilt = initTilt;
-  const origRender = LUXE.renderProducts;
-  LUXE.renderProducts = function (list) {
-    origRender.call(LUXE, list);
-    initTilt();
-  };
+  // LUXE.initTilt = initTilt;
+  // const origRender = LUXE.renderProducts;
+  // LUXE.renderProducts = function (list) {
+  //   origRender.call(LUXE, list);
+  //   initTilt();
+  // };
 
   /* ---------- Gallery lightbox ---------- */
   function initGallery() {
