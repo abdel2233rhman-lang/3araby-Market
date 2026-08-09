@@ -43,7 +43,7 @@ export function initHeroFloats(){
     {e:'🍅',x:'45%',y:'15%',d:'.8s',s:'5.8s'},
     {e:'🥑',x:'60%',y:'80%',d:'1.8s',s:'7.2s'},
     {e:'خصم 30%',x:'40%',y:'75%',d:'0s',s:'5s',offer:true},
-    {e:'عرض خاص',x:'55%',y:'20%',d:'1s',s:'6s',offer:true},
+    {e:'عرض خاص',x:'40',y:'15%',d:'1s',s:'6s',offer:true},
   ];
   wrap.innerHTML = items.map(it=>`
     <div class="float-item ${it.offer?'offer':''}" style="left:${it.x};top:${it.y};animation-delay:${it.d};animation-duration:${it.s}">${it.e}</div>
