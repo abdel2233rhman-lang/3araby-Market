@@ -1,7 +1,7 @@
 /* ===== العربي ماركت — Cart & Checkout ===== */
 import { PRODUCTS, CAT_NAMES } from './products.js';
 
-const WHATSAPP_NUMBER = '20 106 888 2419'; // ضع رقمك هنا
+const WHATSAPP_NUMBER = '201068882419'; // ضع رقمك هنا
 
 let cart = [];
 let favorites = [];
